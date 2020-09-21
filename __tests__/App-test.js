@@ -10,13 +10,13 @@ it('renders correctly', () => {
 
 test('Tile 0,0 must not have a blank tile around.', () => {
   expect(
-    GameEngine.getblankTile({row: 0, col: 0}, GameEngine.defaultMatrix),
+    GameEngine.getBlankTile({row: 0, col: 0}, GameEngine.defaultMatrix),
   ).toBe(null);
 });
 
 test('Tile 2, 1 should have blank tile on its right at 2,2.', () => {
   expect(
-    GameEngine.getblankTile({row: 2, col: 1}, GameEngine.defaultMatrix),
+    GameEngine.getBlankTile({row: 2, col: 1}, GameEngine.defaultMatrix),
   ).toStrictEqual({
     row: 2,
     col: 2,
@@ -89,16 +89,30 @@ test('Top of tile 2,2 is 1,2.', () => {
   });
 });
 
-//
-// test('Left most tile of 0,0 must be null', () => {
-//   expect(GameEngine.leftTile({row: 0, col: 0}, GameEngine.defaultMatrix)).toBe(
-//     null,
-//   );
-// });
-//
-// const tile = {row: 0, col: 1};
-// test('Right most tile of 0,0 must be null', () => {
-//   expect(GameEngine.leftTile({row: 0, col: 0}, GameEngine.defaultMatrix)).toBe(
-//     tile,
-//   );
-// });
+test('Right tile of 0,0 is 0,1.', () => {
+  expect(GameEngine.rightTile({row: 0, col: 0})).toStrictEqual({
+    row: 0,
+    col: 1,
+  });
+});
+
+test('Left tile of 0,1 is 0,0.', () => {
+  expect(GameEngine.leftTile({row: 0, col: 1})).toStrictEqual({
+    row: 0,
+    col: 0,
+  });
+});
+
+test('Bottom tile of 0,0 is 1,0.', () => {
+  expect(GameEngine.bottomTile({row: 0, col: 0})).toStrictEqual({
+    row: 1,
+    col: 0,
+  });
+});
+
+test('Bottom tile of 1,0 is 2,0.', () => {
+  expect(GameEngine.bottomTile({row: 1, col: 0})).toStrictEqual({
+    row: 2,
+    col: 0,
+  });
+});
